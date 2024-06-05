@@ -1,0 +1,55 @@
+<div class="container-fluid container-center">
+    <h1 class="text-center">Login</h1>
+    <div class="d-flex align-items-center" id="row-gap" >
+        <div class="col-6"  id="hide" >
+            <img class="w-100 h-100"src="app/style/images/login.svg" alt="login image"> 
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-8 " >
+            <div class="d-flex flex-column form-gap" >
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn vertical-center active w-50">
+                        <input type="radio" name="options" id="option1" value="Owner" autocomplete="off" checked> Owner
+                    </label>
+                    <label class="btn vertical-center w-50 ">
+                        <input type="radio" name="options" id="option2"  value="Customer"  autocomplete="off"> Customer
+                    </label>
+                </div>
+                <form autocomplete="off" name="loginForm" class="d-flex flex-column form-gap" ng-submit="validateLoginForm()">
+                    <div class="form-group">
+                        <label class="m-0" for="username"> Username </label>
+                        <input type="text" minlength="4" ngMinlength="4" class="form-control error-text" ng-pattern="/^[\w]+$/"  id="username" name="username" ng-model="username" placeholder="Enter username" aria-describedby="nameInputField" error-text="Username is required" error-class ng-required="true" >
+                        <span ng-show="loginForm.username.$error.minlength">Name must have minimum 4 characters</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="m-0 "  for="password">Password </label>
+                        <input type="password" minlength="6" ngMinlength="6" class="form-control error-text" id="password" name="password" ng-model="password" placeholder="Enter Password" error-text="Password is required" error-class aria-describedby="passwordInputField" ng-required="true">
+                        <span ng-show="loginForm.password.$error.minlength">Password must have minimum 6 characters</span>
+                    </div>   
+                    <div class="text-center">  
+                        <button type="submit"  class="btn btn-format">SIGN IN</button>      
+                    </div> 
+                </form>   
+            </div> 
+        </div>
+    </div>
+    <div class="col-lg-5 offset-lg-5 text-center"> 
+        Dont have an account? <a href="#/register"> Sign Up </a>
+    </div> 
+</div>
+<div class="modal text-center"  data-controls-modal="authentication-success" data-backdrop="static" data-keyboard="false"  id="authentication-success" tabindex="-1" role="dialog" aria-labelledby="authentication-success" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button"  onclick=" window.location.href ='#/roomBooking'" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"><img src="app/style/images/close.svg" alt="close button image" ></span>
+                </button>
+                <div class="d-flex flex-column " id="modal-gap">
+                    <div>
+                        <img id="change-size" class="col-6" src="app/style/images/success.svg" alt="authentication successfull image">
+                    </div>
+                    <p id="message"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

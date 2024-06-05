@@ -1,0 +1,252 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.welcome-home {
+    padding: 20px;
+}
+
+.welcome-home .message {
+    font-size: 2rem;
+}
+
+body {
+    font-family: Quando;
+    overflow-y: scroll;
+    overflow-x:hidden;
+}
+
+div>h1 {
+    font-size: 32px;
+    line-height: 40px;
+    color: #009A61;
+    margin-top: 68px;
+}
+
+
+label, .form-control {
+    font-size: 14px;
+    line-height: 17.5px;
+}
+
+.form-control {
+    border-radius: 10px;
+    border: 3px solid #626262;
+    box-shadow: 0px 2px 7px 0px #D5D5D5;
+}
+
+
+.vertical-center {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.btn-group {
+    border-radius: 8px;
+    border: 1px solid #009A61;
+    font-weight: bold;
+}
+
+.btn-group .btn.active {
+    background-color: #009A61;
+    color: #ffffff;
+}
+
+.btn-group .btn {
+    width: 139px;
+    height: 52px;
+    font-weight: bold;
+    font-family: Outfit;
+}
+
+.btn-format:enabled.btn-format:hover {
+    color: #fff;
+    background-color: #00c57d;
+}
+
+.btn-format {
+    width: 192px;
+    height: 53px;
+    border-radius: 20px;
+    padding: 4px 16px 4px 16px;
+    background-color: #009A61;
+    border-color: #009A61;
+    color: #ffffff;
+    font-family: IBM Plex Sans;
+}
+
+a {
+    color: #009A61;
+}
+
+
+a:hover{
+    text-decoration: none;
+    color: #00c57d;
+}
+
+.form-gap {
+    gap: 39px;
+}
+
+.form-gap-1 {
+    gap: 23px;
+}
+
+#row-gap{
+    gap:100px;
+    margin:40px 40px 0px 80px;
+}
+
+#row-gap-1{
+    gap:80px;
+    margin:90px 30px 0px 30px; 
+}
+
+#modal-gap{
+    gap: 24px;
+    padding: 36px 40px;
+}
+
+#authentication-success {
+    font-family: Inter;
+    border-radius: 8px;
+    border: 1px solid #DEE2E6;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: left;
+    color: #54595E;
+}
+
+#change-size{
+    width:25%;
+   height: 25% ;
+}
+
+.col-lg-5{
+    margin-top: 33px;
+    margin-bottom: 33px;
+}
+
+@media only screen and (max-width:1024px){
+    #row-gap{
+        gap:50px;
+    }
+} 
+
+@media only screen and (max-width:768px) {
+    div img{
+        width: 80%;
+        height: 80%;
+    } 
+    
+}
+
+@media only screen and (max-width:480px) {
+    .container-center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh; 
+    }
+    
+    #hide{
+        display: none;
+    }
+
+    #row-gap-1, #row-gap{
+        flex-direction: column;
+        gap:39px;
+        margin: 30px;
+    }
+
+    .form-gap-1, .form-gap{
+        gap:33px;
+    }
+
+    #authentication-success {
+        font-size: 14px;
+        line-height: 16.9px;
+    }
+
+    #modal-gap{
+        padding: 0px;
+    }    
+}
+
+.dropdown-icon {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('../images/caret-down.svg'); 
+    background-repeat: no-repeat;
+    background-position: right ;
+    background-origin: content-box;
+}
+
+input#search{
+    width: 50%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('../images/search.svg');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 20px 40px 20px 40px;
+}
+
+input#search:focus{
+    background-image: none;
+    padding: 20px;
+}
+
+.validation-error-input{
+    background: #F2C6C6;
+    border: 3px solid rgba(142, 20, 20, 1);
+    box-shadow: 0px 2px 7px 0px rgba(213, 213, 213, 1);
+   
+}
+
+
+.placeholder-color::placeholder{
+    color:rgba(142, 20, 20, 1) ;
+}
+
+
+
+
+.validation-error-select{
+  
+    background:  #F2C6C6 url('../images/caret-down1.svg');
+    background-repeat: no-repeat;
+    background-position: right ;
+    background-origin: content-box;
+    border: 3px solid rgba(142, 20, 20, 1);
+    box-shadow: 0px 2px 7px 0px rgba(213, 213, 213, 1);
+    color:rgba(142, 20, 20, 1);
+}  
+
+span{
+    font-size: 14px;
+    line-height: 18px;
+    text-align: left;
+    padding-left:5px;
+    color: red;
+     
+}
+#custom-pagination {
+    text-align: center;
+    margin-top: 10px; /* Adjust as needed */
+}
+
+#custom-previous img,
+#custom-next img {
+    width: 20px; /* Adjust image width as needed */
+    height: 20px; /* Adjust image height as needed */
+    vertical-align: middle; /* Align image vertically */
+}

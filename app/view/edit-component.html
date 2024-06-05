@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="app/style/css/viewBooking.css">
+<div class="form-group h-auto d-flex align-items-center ">
+    <label class="col-6 m-0  view view-label" for="name"> Name </label>
+    <input type="text" class="form-control" ng-pattern="/^[a-zA-Z ]+$/" id="name" name="fullname" ng-model="$ctrl.values.fullname"  aria-describedby="nameInputField" ng-required="true">
+</div>
+<div class="form-group h-auto d-flex align-items-center ">
+    <label  class="col-6 m-0  view view-label" for="emailId"> Email ID</label>
+    <input type="text" ng-pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/" name="email" class="form-control" id="emailId" ng-model="$ctrl.values.email" aria-describedby="emailIdInputField"  ng-required="true">   
+</div>
+<div class="form-group h-auto d-flex align-items-center ">
+    <label class="col-6 m-0  view view-label" for="phonenumber"> Phone Number </label>
+    <input type="text" minlength="8" ngMinlength="8" ng-change="updateDate()" ngMaxlength="10" maxlength="10" name="phonenumber" oninput="this.value = this.value.replace(/\D+/g, '')"ng-model="$ctrl.values.phonenumber" class="form-control" id="phonenumber"  aria-describedby="phoneNumberInputField"  ng-required="true">
+</div> 
+<div class="form-group h-auto d-flex align-items-center ">
+    <label class="col-6 m-0 view view-label"  for="gender"> Gender </label>
+    <select class="form-control dropdown-icon"  name="gender" id="gender" ng-model="$ctrl.values.gender" aria-describedby="genderInputField" ng-required="true" >
+    <option value disabled selected hidden>Choose Gender</option>
+        <option value="{{ i }}" ng-repeat="i in $ctrl.options1"> {{ i }}
+    </select>
+</div>
+<div class="form-group h-auto d-flex align-items-center ">
+    <label class="col-6 m-0 view view-label"  for="age"> Age </label>
+    <input type="number" class="form-control"  id="age" min="18" max="120" name="age" ng-model="$ctrl.values.age" aria-describedby="ageInputField"  ng-required="true">
+</div>
+<div class="form-group h-auto d-flex align-items-center ">
+    <label class="col-6 m-0 view view-label" for="checkindate"> Check-In Date</label>
+    <input class="form-control datePicker"  ng-click="openDatepickerModal()"  id="checkindate" ng-model="$ctrl.values.checkindate" type = "text"   aria-describedby="checkInDateInputField" ng-required="true">
+</div>
+<div class="form-group h-auto d-flex align-items-center ">
+    <label class="col-6 m-0 view view-label"  for="expectedcheckoutdate"> Check-Out Date </label>
+    <input class="form-control datePicker" id="expectedcheckoutdate" ng-click="openDatepickerModal()" name="expectedcheckoutdate" ng-model="$ctrl.values.expectedcheckoutdate" type="text" aria-describedby="expectedCheckOutDateInputField">
+</div>
+<div class="form-group h-auto d-flex align-items-center ">
+    <label class="col-6 m-0 view view-label" for="roomtype">Room type</label>
+    <select class="form-control dropdown-icon"  name="roomtype" id="roomtype" ng-model="$ctrl.values.roomtype" aria-describedby="roomTypeInputField" ng-required="true" >
+            <option value="{{ i }}" ng-repeat="i in $ctrl.options4"> {{ i }}
+    </select>
+</div>
+<div class="form-group h-auto d-flex align-items-center ">
+    <label class="col-6 m-0 view view-label" for="roomsize">  Room Size</label>
+    <select class="form-control dropdown-icon"  name="roomsize" id="roomsize" ng-model="$ctrl.values.roomSize" aria-describedby="roomSizeInputField" ng-required="true" >
+        <option value="{{ i }}" ng-repeat="i in $ctrl.options3"> {{ i }}
+    </select>  
+</div>
+<div class="form-group h-auto d-flex align-items-center ">
+    <label class="col-6 m-0 view view-label"  for="idtype"> ID Type </label>
+    <select  class="form-control error-text  dropdown-icon" name="idtype" id="idtype" ng-model="$ctrl.values.idtype" aria-describedby="idTypeInputField" ng-required="true" >
+        <option value disabled selected hidden>Choose Government ID Type</option>
+        <option value="{{ i }}" ng-repeat="i in $ctrl.options2">{{ i }}
+    </select>
+</div>
+<div class="form-group h-auto d-flex align-items-center ">
+<label class="col-6 m-0 view view-label" for="idnumber"> ID Number</label>
+<input type="text" class="form-control" id="idnumber"  name="idnumber" ng-model="$ctrl.values.idnumber" aria-describedby="idNumberInputField" ng-required="true" >
+</div>
+<div class="form-group h-auto d-flex align-items-center ">
+    <label class="col-6 m-0 view view-label" for="purpose"> Purpose</label>
+    <input type="text" class="form-control"  id="purpose" name="purpose" ng-model="$ctrl.values.purpose" aria-describedby="purposeInputField"  ng-required="true" >
+</div>
+<button class="btn btn-format btn-format-1"  ng-click="$ctrl.submitData()">Submit</button>

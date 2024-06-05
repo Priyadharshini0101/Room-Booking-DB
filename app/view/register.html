@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="d-flex vertical-center" id="row-gap-1">
+        <div class=" d-flex flex-column">
+        <h1 class="text-center m-0" >Registration</h1>
+        <div> 
+            <img class="w-100 h-100" id="hide" src="app/style/images/register.svg" alt="register image"> 
+        </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-8 " >
+            <div class="d-flex flex-column form-gap-1" >   
+                <div class="btn-group btn-group-toggle" data-toggle="buttons" >
+                    <label class="btn vertical-center active w-50">
+                        <input type="radio" name="options" id="option1"  autocomplete="off" checked value="Owner"> Owner
+                    </label>
+                    <label class="btn  vertical-center w-50 ">
+                        <input type="radio" name="options" id="option2" autocomplete="off" value="Customer"> Customer
+                    </label>
+                </div>
+                <form autocomplete="off" name="registerForm" class="d-flex flex-column form-gap-1" novalidate >
+                    <div class="form-group">
+                        <label for="username"> Username </label>
+                        <input type="text"  minlength="4" ngMinlength="4"  name="username"  ng-model="register.name" class="form-control error-text"  error-text="Username required" error-class id="username" placeholder="Enter Username" aria-describedby="usernameInputField" ng-required="true">
+                        <span ng-show="registrationForm.username.$error.minlength">Name must have minimum 4 characters</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="emailid"> Email ID</label>
+                        <input type="email" ng-pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/" class="form-control error-text" name="emailid" ng-model="register.email" id="emailid"  error-text="Email Id is required" error-class placeholder="Enter E-mail" aria-describedby="emailIdInputField" ng-required="true">
+                        <span ng-show="registrationForm.emailid.$error.pattern">Please enter a valid email address.</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="m-0" for="phonenumber"> Phone Number</label>
+                        <input type="text" ngMinlength="10" minlength="10" maxlength="10" ngMaxlength="10" name="phonenumber" error-text="Phone number is required"  oninput="this.value = this.value.replace(/\D+/g, '')" ng-pattern="[0-9]{10}" ng-model="register.phonenumber" class="form-control error-text " id="phonenumber"  placeholder="Enter Phone Number"  aria-describedby="phoneNumberInputField"   error-class ng-required="true">
+                        <span ng-show="registrationForm.phonenumber.$error.minlength">Phonenumber length must be  10</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password </label>
+                        <input type="password" ngMinlength="8"  class="form-control error-text"  error-text="Password is required" error-class id="password" name="password" ng-model="register.password" placeholder="Enter Password" aria-describedby="passwordInputField" ng-required="true">
+                        <span ng-show="registrationForm.password.$error.minlength">Name must have minimum 4 characters</span>
+                    </div>   
+                    <div class="form-group">
+                        <label for="reenterpassword"> Re-Enter Password </label>
+                        <input type="password" ngMinlength="8" class="form-control error-text" ng-change="validatePassword()" error-text="Please re-enter the password"  error-class id="reenterpassword" name="reenterpassword" ng-model="eenterpassword" placeholder="Enter Re-Enter Password" aria-describedby="reEnterPasswordInputField" ng-required="true">
+                        <span ng-show="checkPassword">Password doesn't matches</span>
+                    </div>
+                    <div class="text-center"> 
+                        <button type="submit" ng-click="validateRegisterForm()"  class="btn btn-format" >Sign Up</button>      
+                    </div> 
+                </form>
+            </div> 
+        </div>
+    </div>
+    <div class="col-lg-5 offset-lg-1 text-center"> 
+        Already Have an account? 
+        <a  href="#/login"> Sign In </a>
+    </div>
+</div>
+<div class="modal text-center" id="authentication-success" tabindex="-1" role="dialog" aria-labelledby="#authentication-success" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="d-flex flex-column " id="modal-gap">
+                    <div>
+                        <img  id="change-size" src="app/style/images/success.svg" alt="authentication successfull image">
+                    </div>
+                    <p id="message"></p>
+                    <div>
+                        <button type="button" class="btn btn-format" ng-click="navigate()" class="close" data-dismiss="modal" >Sign in</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

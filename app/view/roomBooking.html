@@ -1,0 +1,192 @@
+<link rel="stylesheet" href="app/style/css/roomBooking.css">
+<div class="container-fluid container-center-1 ">
+    <form autocomplete="off" novalidate class="d-flex flex-column gap-25"  name="myForm">
+        <ng-form ng-show="roomBookingDetailsForm"  name="subForm1" novalidate>
+            <div class="d-flex flex-column gap-25">
+                <h1 class="text-center">Room booking details</h1>
+                <div  class="d-flex  justify-content-around" id="mobile-view" >
+                    <div class=" col-lg-4 col-md-6 col-sm-8 d-flex flex-column">
+                        <div class="form-group">
+                            <label class="m-0" for="name"> Name </label>
+                            <input type="text" class="form-control error-text" ng-pattern="/^[a-zA-Z ]+$/"  id="name" name="fullname" ng-model="form.fullname" placeholder="Enter Full Name" aria-describedby="nameInputField" error-text="Name is required" error-class ng-required="true" >
+                            <span ng-show="subForm1.fullname.$error.pattern"> {{ alphabetsOnly }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="m-0" for="gender"> Gender </label>
+                            <select class="form-control error-text  dropdown-icon"  name="gender" error-text="Gender must be choosen" id="gender" error-class-select ng-model="form.gender" aria-describedby="genderInputField" ng-required="true" >
+                                <option value disabled selected hidden>Choose Gender</option>
+                                <option value="{{ i }}" ng-repeat="i in genders"> {{ i }}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="m-0" for="emailId"> Email ID</label>
+                            <input type="text" ng-pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/" ng-blur="isValidEmail()" name="email" class="form-control error-text " error-text="E-Mail address is required"  id="emailId" ng-model="form.email" placeholder="Enter E-mail Address" aria-describedby="emailIdInputField"  error-class ng-required="true">
+                            <span ng-show="subForm1.email.$error.pattern" >Please enter a valid email address.</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="m-0" for="idtype"> ID Type</label>
+                            <select class="form-control error-text  dropdown-icon" name="idtype" id="idtype" error-text="Government ID type must be choosen" ng-model="form.idtype" aria-describedby="idTypeInputField" error-class-select ng-required="true" >
+                                <option value disabled selected hidden>Choose Government ID Type</option>
+                                <option value="{{ i }}" ng-repeat="i in idType">{{ i }}
+                            </select>
+                         </div>
+                    </div>    
+                    <div class="col-lg-4 col-md-6 col-sm-8 d-flex flex-column">
+                        <div class="form-group">
+                            <label class="m-0" for="age"> Age</label>
+                            <input type="number" class="form-control error-text "  error-text="Age is required" id="age" min="18" max="120" name="age" ng-model="form.age" placeholder="Enter Age" aria-describedby="ageInputField"  error-class ng-required="true">
+                            <span ng-show="subForm1.age.$error.min || subForm1.age.$error.max">Age must be from 18 to 120 </span>
+                        </div>
+                        <div class="form-group">
+                            <label class="m-0" for="purpose"> Purpose</label>
+                            <input type="text" maxlength="50" ng-change="remainingCharacters()" error-text="Purpose is required" class="form-control error-text " ng-blur="clear()"  id="purpose" name="purpose" ng-model="form.purpose" placeholder="Enter Purpose of Booking" aria-describedby="purposeInputField" error-class  ng-required="true" >
+                            <span ng-show="purposeText">{{validationStatus}}</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="m-0" for="phonenumber"> Phone Number</label>
+                            <input type="text" minlength="8" ngMinlength="8"  ngMaxlength="10" maxlength="10" name="phonenumber" error-text="Phone number is required"  oninput="this.value = this.value.replace(/\D+/g, '')" ngPattern="[0-9]{10}" ng-model="form.phonenumber" class="form-control error-text " id="phonenumber"  placeholder="Enter Phone Number"  aria-describedby="phoneNumberInputField"   error-class ng-required="true">
+                            <span ng-show="subForm1.phonenumber.$error.minlength || subForm1.phonenumber.$error.maxlength">Phonenumber length must be from 8 to 10</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="m-0" for="idnumber"> ID Number</label>
+                            <input type="text" class="form-control error-text " ng-pattern="/^[\w ]+$/"  id="idnumber"  name="idnumber" ng-model="form.idnumber" error-text="ID number is required" placeholder="Enter Government ID Number" aria-describedby="idNumberInputField" error-class  ng-required="true" >
+                            <span ng-show="subForm1.idnumber.$error.pattern">You can only use alphabets, numbers and underscore in ID number</span>
+                       </div>
+                </div> 
+            </div> 
+            </div> 
+            <div class="d-flex  justify-content-around " id="button-group">
+                <div class=" col-lg-4 col-md-6 col-sm-8  w-50 text-right">
+                    <button type="submit" ng-disabled="!subForm1.$valid" ng-click="submitForm()" class="btn btn-format btn-format-1 " >Next</button>
+                </div>
+                <div class=" col-lg-4 col-md-6 col-sm-8  w-50 text-left">
+                    <button class="btn btn-format btn-format-1" onclick=" window.location.href ='#/viewBooking'" ng-disabled="userType">View Booking</button>
+                </div> 
+            </div>
+        </ng-form> 
+        <ng-form ng-show="!roomBookingDetailsForm"  name="subForm2"  novalidate>
+            <div class="d-flex flex-column gap-25">
+                <h1 class="text-center">Additional Requirements</h1>
+                <div class="d-flex justify-content-around " id="mobile-view" >
+                    <div class="col-lg-4 col-md-6 col-sm-8 d-flex flex-column">
+                        <div class="form-group d-flex flex-column gap-10 ">
+                            <label class="m-0" for="roomtype">Room type</label>
+                            <div class="d-flex gap-75 " >
+                                <div class="form-check " >
+                                    <input type="radio" class="form-check-input" ng-model="form.roomtype" value="AC" aria-describedby="roomType1InputField" >
+                                    <label class="form-check-label">  AC </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" ng-model="form.roomtype" value="NON - AC" aria-describedby="roomType2InputField"> 
+                                    <label class="form-check-label" for="radio2"> Non- AC </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="m-0" for="checkindate"> Check-In Date</label>
+                            <input class="form-control error-text"  ng-change="setCheckOutDate()" name="checkindate" id="checkindate" error-class error-text="Room check-in date must be choosen" ng-model="form.checkindate" onfocus="{this.type = 'date'}" onblur="this.type= 'text'"  placeholder="Choose Check-In Date" aria-describedby="checkInDateInputField" ng-required="true">
+                            <span ng-if="err">invalid date!</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="m-0" for="expectedcheckoutdate"> Expected Check-Out Date </label>
+                            <input class="form-control" ng-change="setCheckInDate()" id="expectedcheckoutdate"  name="expectedcheckoutdate" ng-model="form.expectedcheckoutdate" onfocus="{this.type = 'date'}" onblur="this.type= 'text'" placeholder="Choose Expected Check-Out date" aria-describedby="expectedCheckOutDateInputField">
+                            <span ng-if="err">invalid date!</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="m-0"> Services Provider</label>
+                            <div class="d-flex gap-75 ">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" ng-model="servicesprovided1" aria-describedby="servicesProvider1InputField" >
+                                    <label class="form-check-label">Catering</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" ng-model="servicesprovided2" aria-describedby="servicesProvided2InputField">
+                                    <label class="form-check-label">Laundry services</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show=" servicesprovided1" class="form-group">
+                            <label class="m-0" for="cateringType"> Catering Type </label>
+                            <select class="form-control error-text   dropdown-icon" name="cateringType" error-text="Catering type must be chosen" error-class-s id="cateringType" ng-model="form.cateringType" aria-describedby="cateringTypeInputField" ng-required="servicesprovided1" >
+                                <option value disabled selected hidden> Choose Catering Type </option>
+                                <option value="{{ i }}" ng-repeat="i in cateringTypes"> {{ i }}
+                            </select>
+                        </div>
+                    </div>      
+                    <div class="col-lg-4 col-md-6 col-sm-8 d-flex flex-column">
+                        <div class="form-group">
+                            <label class="m-0" >  Room Size</label>
+                            <custom-dropdown  selected="Choose a Room size" name="roomSize" options="roomSizes" ng-model="form.roomSize" ></custom-dropdown>
+                        </div>
+                        <div class="form-group">
+                            <label class="m-0" for="checkouttime"> Check-In Time</label>
+                            <input class="form-control error-text " name="checkintime" error-class error-text="Room check-in time must be choosen" id="checkintime" ng-model="form.checkintime" onfocus="{this.type = 'time'}" onblur="this.type= 'text'" placeholder="Choose Check-In time" aria-describedby="checkInTimeInputField" ng-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label class="m-0" for="expectedcheckouttime"> Expected Check-Out Date </label>
+                            <input class="form-control error-text " id="expectedcheckouttime" ng-model="form.expectedcheckouttime" onfocus="{this.type = 'time'}" onblur="this.type= 'text'" placeholder="Choose Expected Check-Out time" aria-describedby="expectedCheckOutTimeInputField">
+                        </div> 
+                        <div ng-show="servicesprovided2" class="form-group  mt-auto">
+                            <label class="m-0" for="laundryType"> Laundry Type</label>
+                            <select class="form-control error-text  dropdown-icon" name="laundryType" id="laundryType" error-text="Laundry type must be chosen" error-class-select ng-model="form.laundryType" aria-describedby="laundryInputField" >
+                                <option value disabled selected hidden>Choose Laundry Type</option>
+                                    <option value="{{ i }}" ng-repeat="i in laundryTypes">{{ i }}
+                            </select>
+                       </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="d-flex  justify-content-around ">
+                <div class=" col-lg-4 col-md-6 col-sm-8  w-50 text-right">
+                    <button type="submit" ng-disabled="!subForm2.$valid" ng-click="submitAllData()" class="btn btn-format btn-format-1 " >Save</button>
+                </div>
+                <div class=" col-lg-4 col-md-6 col-sm-8  w-50 text-left">
+                    <button class="btn btn-format btn-format-1" onclick=" window.location.href ='#/viewBooking'" ng-disabled="userType">View Booking</button>
+                </div>
+            </div>  
+        </ng-form> 
+        <div class="modal" id="charges" tabindex="-1" role="dialog" aria-labelledby="#charges" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content justify-content-center">
+                    <div class="modal-body">
+                        <h1 class="modal-title text-center" id="exampleModalLabel">CHARGES</h1>
+                        <div class="col-12 d-flex flex-column justify-content-center" id="modal-gap">
+                            <form autocomplete="off" class="d-flex flex-column ">
+                                <div class="form-group h-auto d-flex align-items-center ">
+                                    <label class="col-6 m-0" for="roomCharges"> Room charges </label>
+                                    <input type="number" class="form-control" id="roomCharges" aria-describedby="roomChargesInputField">
+                                </div>
+                                <div class="form-group d-flex align-items-center ">
+                                    <label class="col-6 m-0" for="cateringCharges"> Catering charges </label>
+                                    <input type="number" class="form-control" id="cateringCharges" aria-describedby="cateringChargesInputField">
+                                </div>
+                                <div class="form-group d-flex align-items-center ">
+                                    <label class="col-6 m-0" for="laundryCharges"> Laundry charge</label>
+                                    <input type="number" oninput="this.value = this.value.replace(/\D+/g, '')" pattern="[0-9]{10}" class="form-control" aria-describedby="laundryChargeInputField">
+                                </div>
+                                <div class="form-group d-flex align-items-center ">
+                                    <label class="col-6 m-0" for="taxAmount"> Tax Amount(18%) </label>
+                                    <input type="number" class="form-control" id="taxAmount" aria-describedby="taxAmountInputField">
+                                </div>
+                                <div class="form-group d-flex align-items-center ">
+                                    <label class="col-6 m-0" for="totalCost"> Total cost </label>
+                                    <input type="number" class="form-control" id="totalAmount"
+                                        aria-describedby="totalCostInputField">
+                                </div>
+                                <div class="text-center d-flex form-gap-3 justify-content-center">
+                                    <button type="submit" class="btn btn-format btn-format-1">Submit</button>
+                                    <button type="cancel" class="btn btn-format btn-format-1" class="close" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div ng-show="formSubmitted" class="load"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+

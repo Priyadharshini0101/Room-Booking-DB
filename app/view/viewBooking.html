@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="app/style/css/viewBooking.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
+<div class="card-body row">
+    <form class="form-group w-100 gap-25 d-flex justify-content-around align-items-center">
+        <button class="btn-format-2"><img src="app/style/images/filter.svg"></button>
+        <input type="text" class="form-control" id="search" placeholder="Search..">
+        <button class="btn btn-format ml-auto" onclick=" window.location.href ='#/roomBooking'"><img src="app/style/images/add.svg">Create Booking</button>
+        </form>
+    <table  class="display" cellspacing="0" width="100%" id="myTable">
+       
+        <div class="modal" id="view-data" tabindex="-1" role="dialog" aria-labelledby="#view-data" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content justify-content-center">
+                    <button class="btn btn-format ml-auto" class="close" data-dismiss="modal" aria-label="Close">Cancel</button>
+                      
+                    <div class="modal-body">
+                       <div class="col-12 d-flex flex-column justify-content-center" id="modal-gap">
+                            <view-data values="userComponent" ></view-data>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="edit-data" tabindex="-1" role="dialog" aria-labelledby="#edit-data" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content justify-content-center">
+                    <button class="btn btn-format ml-auto" class="close" data-dismiss="modal" aria-label="Close">Cancel</button>
+                      
+                    <div class="modal-body">
+                       <div class="col-12 d-flex flex-column justify-content-center" >
+                        <edit-data values="userComponent"  options1="gender" options2="idtype" options3="roomsizes" options4="roomtypes" rowIndex="rowindex" action="submit()"></edit-data>
+                    
+                        </div>
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+     </table>
+</div>

@@ -1,0 +1,135 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <style>
+        .availablity-table {
+            height: 350px;
+            overflow: auto;
+        }
+
+    </style>
+    
+<div ng-controller="availabilityController">
+    <h2 class="text-center m-5">Room Availability Checker</h2>
+
+
+<style>
+    .availablity-table {
+        height: 350px;
+        overflow: auto;
+    }
+</style>
+
+<div ng-controller="availabilityController">
+    <h2 class="text-center m-5">Room Availability Checker</h2>
+
+    <form class="container">
+        <div class="row justify-content-around m-2">
+            <div class="col-md-4">
+                <label>Check-in Date:</label>
+
+                <input type="date" class="form-control" ng-change="setCheckOutDate()" id="checkindate"  ng-model="booking.checkInDate">
+
+                <input type="date" class="form-control" ng-model="booking.checkInDate">
+
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <label>Check-in Time:</label>
+                <input type="time" class="form-control" ng-model="booking.checkInTime">
+
+            </div>  
+
+            </div>
+
+        </div>
+
+        <div class="row  justify-content-around m-2">
+            <div class="col-md-4">
+                <label>Check-out Date:</label>
+
+                <input type="date" class="form-control"ng-change="setCheckInDate()" id="checkoutdate"  ng-model="booking.checkOutDate">
+
+                <input type="date" class="form-control" ng-model="booking.checkOutDate">
+
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <label>Check-out Time:</label>
+
+                <input type="time" class="form-control"  ng-model="booking.checkOutTime">
+            </div>
+        </div>
+
+
+
+                <input type="time" class="form-control" ng-model="booking.checkOutTime">
+            </div>
+        </div>
+
+        <div class="row  justify-content-around m-2">
+            <div class="col-md-4">
+                <label>Room Type:</label>
+                <select class="form-control" ng-model="booking.roomType">
+                    <option class="d-none" value="" selected>Select room type</option>
+
+                    <option value="Standard">Standard</option>
+                    <option value="Deluxe">Deluxe</option>
+                    <option value="Suite">Suite</option>
+
+                    <option value="standard">Standard</option>
+                    <option value="deluxe">Deluxe</option>
+                    <option value="suite">Suite</option>
+
+                </select>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <label>Room Size:</label>
+                <select class="form-control" ng-model="booking.roomSize">
+                    <option class="d-none" value="" selected>Select room size</option>
+                    <option value="1">1 Bed</option>
+                    <option value="2">2 Beds</option>
+                    <option value="3">3 Beds</option>
+                    <option value="4">4 Beds</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-12 text-center m-2">
+            <button type="button" class="btn btn-primary active" ng-click="checkAvailability()">Check Availability</button>
+
+            <button type="button" class="btn btn-primary active" ng-click="checkAvailability()">Check
+                Availability</button>
+        </div>
+    </form>
+
+    <p ng-show="!isRoomAvailable">
+        Sorry, no rooms are available for the specified dates and times.
+    </p>
+
+    <div class="availablity-table">
+        <table ng-show="isRoomAvailable" class="table col-8 container mt-5">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Room Number</th>
+                    <th scope="col">Room Type</th>
+                    <th scope="col">Room size</th>
+                </tr>
+            </thead>
+
+            <tr ng-repeat="room in rooms" scope="row">
+
+
+            <tr ng-repeat="room in availableRooms" scope="row">
+
+                <td>{{ room.room_number }}</td>
+                <td>{{ room.room_type }}</td>
+                <td>{{ room.room_size }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
